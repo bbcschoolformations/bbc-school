@@ -2,7 +2,20 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Inscrivez-vous à la formation Intelligence Artificielle pour enseignants - BBC School Algeria. Formation certifiante en IA, présentiel et en ligne.">
+
+    <!-- Open Graph / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="BBC School Algeria - Formation IA pour Enseignants">
+    <meta property="og:description" content="Formation certifiante en Intelligence Artificielle pour enseignants. Inscrivez-vous maintenant ! 🎓">
+    <meta property="og:image" content="{{ url_for('static', filename='logo-BBC-School.jpg', _external=True) }}">
+    <meta property="og:url" content="{{ request.url }}">
+
+    <!-- WhatsApp specific -->
+    <meta property="og:site_name" content="BBC School Algeria">
+    <meta name="theme-color" content="#4267B2">
+
     <title>BBC School Algeria - Formation IA pour Enseignants</title>
     <style>
         * {
@@ -15,6 +28,8 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Header Facebook-style */
@@ -54,22 +69,23 @@
             font-size: 32px;
             font-weight: 700;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
         }
 
         /* Main container */
         .container {
             max-width: 900px;
-            margin: 60px auto;
-            padding: 0 20px;
+            margin: 40px auto;
+            padding: 0 15px;
             min-height: calc(100vh - 200px);
         }
 
         /* Cards */
         .card {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
-            padding: 40px;
-            margin-bottom: 30px;
+            padding: 30px 25px;
+            margin-bottom: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             backdrop-filter: blur(10px);
         }
@@ -95,11 +111,13 @@
         .form-group input,
         .form-group select {
             width: 100%;
-            padding: 12px 15px;
+            padding: 14px 16px;
             border: 2px solid #e0e0e0;
             border-radius: 8px;
             font-size: 16px;
             transition: border-color 0.3s;
+            -webkit-appearance: none;
+            appearance: none;
         }
 
         .form-group input:focus,
@@ -117,21 +135,29 @@
         .submit-btn {
             background: #4267B2;
             color: white;
-            padding: 15px 50px;
+            padding: 16px 40px;
             border: none;
-            border-radius: 50px;
+            border-radius: 12px;
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
             width: 100%;
-            margin-top: 10px;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(66,103,178,0.3);
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
 
         .submit-btn:hover {
             background: #365899;
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(66,103,178,0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(66,103,178,0.3);
         }
 
         /* Chatbot */
@@ -280,18 +306,141 @@
             margin-bottom: 10px;
         }
 
+        /* Mobile optimizations */
         @media (max-width: 768px) {
+            .header {
+                padding: 15px 0;
+                padding-bottom: 40px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .logo-container {
+                gap: 10px;
+            }
+
+            .container {
+                margin: 20px auto;
+                padding: 0 10px;
+            }
+
+            .card {
+                padding: 20px 15px;
+                border-radius: 12px;
+                margin-bottom: 20px;
+            }
+
+            .card h3 {
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+
             .form-row {
                 grid-template-columns: 1fr;
+                gap: 15px;
             }
 
-            .hero h2 {
-                font-size: 32px;
+            .form-group {
+                margin-bottom: 15px;
             }
 
+            .form-group label {
+                font-size: 15px;
+                margin-bottom: 6px;
+            }
+
+            .form-group input,
+            .form-group select {
+                padding: 13px 14px;
+                font-size: 16px;
+                border-radius: 6px;
+            }
+
+            .submit-btn {
+                padding: 15px 30px;
+                font-size: 17px;
+                border-radius: 10px;
+                margin-top: 10px;
+            }
+
+            /* Chatbot mobile */
             .chatbot-container {
-                width: 90%;
-                right: 5%;
+                width: 100%;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+
+            .chatbot-toggle {
+                width: 55px;
+                height: 55px;
+                font-size: 22px;
+                right: 15px;
+                bottom: 15px;
+            }
+
+            .chatbot-window {
+                width: 100%;
+                max-width: 100%;
+                bottom: 75px;
+                right: 0;
+                left: 0;
+                border-radius: 12px 12px 0 0;
+                max-height: 70vh;
+            }
+
+            .chatbot-messages {
+                height: 250px;
+                padding: 15px;
+            }
+
+            .message {
+                font-size: 15px;
+                padding: 10px 12px;
+                margin-bottom: 12px;
+            }
+
+            .chatbot-input input {
+                font-size: 16px;
+                padding: 12px;
+            }
+
+            .chatbot-input button {
+                padding: 12px 18px;
+                font-size: 15px;
+            }
+
+            .alert {
+                padding: 12px 15px;
+                font-size: 15px;
+                margin-bottom: 15px;
+            }
+        }
+
+        /* Very small mobile screens */
+        @media (max-width: 400px) {
+            .header h1 {
+                font-size: 18px;
+            }
+
+            .logo {
+                width: 50px;
+                height: 50px;
+            }
+
+            .card {
+                padding: 15px 12px;
+            }
+
+            .card h3 {
+                font-size: 20px;
             }
         }
     </style>
